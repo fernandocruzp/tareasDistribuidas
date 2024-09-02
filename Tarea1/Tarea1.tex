@@ -19,11 +19,11 @@
   frame=lines
 }
 \usepackage{setspace} \doublespacing
-
+\newtheorem{theorem}{Theorema}[section]
+\newtheorem{lemma}[theorem]{Lemma}
 \title{Tarea 1}
 \author{Fernando Cruz Pineda
-  \\
-  
+  \\  
 }
 \date{\today}
 \begin{document}
@@ -49,12 +49,15 @@ Explica por qué es posible tener paralelismo sin concurrencia y concurrencia si
 \section*{Ejercicio 7}
 ¿Cómo se define la complejidad en tiempo para los algoritmos síncronos?
 
+Es el número de rondas hasta que el algoritmo termina.
 \section*{Ejercicio 8}
 Explica con tus propias palabras el modelo LOCAL y el modelo CONGEST.
 
+Ambos modelos calculan la complejidad del algoritmo distribuido usando el modelo síncrono, es decir, cuentan el número de rondas hasta que todos los nodos se detienen, pero la diferencia consta en que en el modelo LOCAL cada nodo puede mandar mensajes de tamaño ilimitado mientra sque en CONGEST el tamaño máximo es O(log(n) bits.
 \section*{Ejercicio 9}
 ¿Qué es la contención de nodos?
 
+Es un modelo de algoritmo síncrono donde cada nodo puede envíar solamente un número constante de mensajes, cada uno de ellos con un tamaño constante.
 \section*{Ejercicio 10}
 Demuestra el siguiente lema:
 
@@ -62,8 +65,37 @@ Demuestra el siguiente lema:
 Una gráfica no dirigida es un árbol si y solo si existe exactamente un camino simple entre cada par de vértices.
 \end{lemma}
 
+Dem.
+
+$\Rightarrow$ Sea T un árbol.
+
+Pd. Para cada par de vértices existe un único camino.
+
+Como T es un árbol, por definición de árbol sabemos que T es conexo, por lo tanto, para cada par de vertices v1 y v2 existe al menos un camino entre ellos, así solamente queda demostrar que solamente existe uno.
+
+Procedemos por contradicción, supongamos que existen dos caminos C1 y C2 diferentes entre los vertices v1 y v2.
+
+Sea $C1=[v_1,x_1,x_2,x_3,\cdots,x_i,x_{i+1},\cdots,v_2]$ y $C2=[v_1,y_1,y_2,y_3,\cdots,y_i,y_{i+1},\cdots,v_2]$, como C1 y C2 son diferentes, debe existir al menos un vertice en C2 que no esté en C1 o viceversa, sin pérdida de la generalidad supongamos que $y_i$ el primero vértice en C2 que no está C1 y $y_j$ con $i<j$ el primer vértice después de $y_i$ que está en C1 y C2, entonces construimos el camino $C3=[v_1,x_1,\cdots,y_{j},y_{j-1},y_{j-2},\cdots,y_{i},y_{i-1}]$, con $y_{i-1}$ en C2, pero como $y_i$ es el primer vértice que está en C2 y no C1, debe ser que $y_{i-1}$ también esté en C1 y está antes que $y_j$ en C1, por lo tanto, C3 es un ciclo, pero esto es una contradicción, pues por definición de árbol T no puede tener ciclos.
+
+Así concluimos que C1 y C2 deben ser iguales, por lo tanto, existe un único camino entre v1 y v2.
+
+lqqd.
+
+$\Leftarrow$ Sea G una gráfica en la que para cada par de vértices existe exactamente un camino.
+
+Pd. G es un árbol.
+
+Como existe un camino entre cada dos vértices, entonces es directo que G es conexa, ahora solamente queda demostrar que no existen ciclos.
+
+Supongamos por contradicción que existe un cilo C en G, tal que $C=[v_1,x_1,x_2,\cdots,x_i,x_{i+1}\cdots,v_1]$, podemos ver que podemos hacer los caminos $P1=[v_1,x_1,x_2,\cdots,x_i]$ y $P2=[v_1,\cdots,x_{i+2},x_{i+1},x_i]$, pero habíamos dicho que solamente existía un camino entre cada par vértices, entonces tenemos una contradicción.
+
+Entonces debe ser que G no tenga ciclos, como G es conexa y sin ciclos, por definición de árbol, G es un árbol.
+
+lqqd.
 \section*{Ejercicio 11}
 Explica con tus propias palabras el funcionamiento de un algoritmo distribuido que calcule la distancia entre la raíz de una gráfica y el nodo que se está visitando.
+
+
 
 \section*{Ejercicio 12}
 Para el algoritmo propuesto en el ejercicio anterior, argumenta cuántos mensajes es necesario enviar para diseminar el mensaje y cuál es el tamaño de cada mensaje enviado.
