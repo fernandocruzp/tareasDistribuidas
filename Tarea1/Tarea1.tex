@@ -95,9 +95,16 @@ lqqd.
 \section*{Ejercicio 11}
 Explica con tus propias palabras el funcionamiento de un algoritmo distribuido que calcule la distancia entre la raíz de una gráfica y el nodo que se está visitando.
 
+El siguiente algoritmo funciona para gráficas conexas sin ciclos, dónde el nodo raíz es identificable.
 
+Paso 1. Si el nodo es la raíz, envía a todos los vecinos 0. En otro caso, procede al Paso 2.
+Paso 2. Recibe el mensaje de tu vecino y guarda en i. 
+Paso 3. Envía el mensaje i + 1  a tus demás vecinos.
+Paso 4. Termina.
 
 \section*{Ejercicio 12}
 Para el algoritmo propuesto en el ejercicio anterior, argumenta cuántos mensajes es necesario enviar para diseminar el mensaje y cuál es el tamaño de cada mensaje enviado.
+
+Solamente es necesario enviar n mensajes con n el número de nodos, cada uno de tamaño constante, pues solamente se envía un número,
 
 \end{document}
